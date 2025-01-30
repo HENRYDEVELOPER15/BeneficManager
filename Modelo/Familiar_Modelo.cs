@@ -29,26 +29,6 @@ namespace AsoDocs.Modelo
             }
         }
 
-
-        //        public DataTable GetFamiliaresRango(int id, double min, double max)
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT f.*, DateDiff(""yyyy"",f.fecha_nacimiento,Date())-IIf(Format(f.fecha_nacimiento,""mmdd"")>Format(Date(),""mmdd""),1,0) AS Edad
-        //FROM familiares AS f
-        //WHERE (((DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))>{min} And (DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))<{max}) AND ((f.id_Asociado)={id}));";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
-
         public DataTable GetFamiliaresRango(int id, double min, double max)
         {
             DataTable dataTable = new DataTable();
@@ -89,26 +69,6 @@ namespace AsoDocs.Modelo
             return filteredTable;
         }
 
-
-        //        public DataTable GetFamiliares(int id)
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    command.Connection = connection;
-        //                    double max = Properties.Settings.Default.Min;
-        //                    command.CommandText = $@"SELECT f.*, DateDiff(""yyyy"",f.fecha_nacimiento,Date())-IIf(Format(f.fecha_nacimiento,""mmdd"")>Format(Date(),""mmdd""),1,0) AS Edad
-        //FROM familiares AS f
-        //WHERE (((f.id_asociado)={id}) AND ((DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))>{max}));";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
 
         public DataTable GetFamiliares(int id)
         {
