@@ -132,25 +132,6 @@ namespace AsoDocs.Modelo
             }
         }
 
-        //        public DataTable GetArchivados(int max, int min)
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT A.*
-        //FROM Asociados AS A
-        //WHERE (((A.Estado)=1) AND ((Year([A].[fecha_modificacion]))>={min} And (Year([A].[fecha_modificacion]))<={max}));";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
-
 
         public DataTable GetArchivados(int max, int min)
         {
@@ -163,7 +144,6 @@ namespace AsoDocs.Modelo
                 {
                     command.Connection = connection;
 
-                    // Consulta simplificada sin condiciones de rango de años
                     command.CommandText = @"SELECT A.*
                                             FROM Asociados AS A
                                             WHERE A.Estado = 1";
@@ -190,25 +170,6 @@ namespace AsoDocs.Modelo
             return filteredTable;
         }
 
-        //        public DataTable GetAsociadosHijos()
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    double max = Properties.Settings.Default.Min;
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT DISTINCT a.*
-        //FROM asociados AS a INNER JOIN familiares AS f ON a.id = f.id_asociado
-        //WHERE (((DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))<={max}) AND ((a.[Estado])=0));";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
 
         public DataTable GetAsociadosHijos()
         {
@@ -266,28 +227,6 @@ namespace AsoDocs.Modelo
         }
 
 
-        //        public DataTable GetAsociadosFamul()
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    double max = Properties.Settings.Default.Min;
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT DISTINCT A.*
-        //FROM Asociados AS A INNER JOIN Familiares AS F ON A.id = F.id_asociado
-        //WHERE (((A.Estado)=0) AND ((DateDiff(""d"",[F].[fecha_nacimiento],Date())/365.25)>{max} And (DateDiff(""d"",[F].[fecha_nacimiento],Date())/365.25)<=21));;
-        //";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
-
-
         public DataTable GetAsociadosFamul()
         {
             DataTable dataTable = new DataTable();
@@ -333,26 +272,6 @@ namespace AsoDocs.Modelo
         }
 
 
-        //        public DataTable GetAsociadosHijosFue()
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    double max = Properties.Settings.Default.Min;
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT DISTINCT a.*
-        //FROM asociados AS a INNER JOIN familiares AS f ON a.id = f.id_asociado
-        //WHERE (((DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))>{max} And (DateDiff(""yyyy"",[f].[fecha_nacimiento],Date())-IIf(Format([f].[fecha_nacimiento],""mmdd"")>Format(Date(),""mmdd""),1,0))<{max +1}) AND ((a.Estado)=0));";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
-
         public DataTable GetAsociadosHijosFue()
         {
             DataTable dataTable = new DataTable();
@@ -397,32 +316,7 @@ namespace AsoDocs.Modelo
             return filteredTable;
         }
 
-        //        public DataTable GetAsociadosSinHijos()
-        //        {
-        //            DataTable dataTable = new DataTable();
-        //            using (var connection = GetConnection())
-        //            {
-        //                connection.Open();
-        //                using (var command = new OleDbCommand())
-        //                {
-        //                    double max = Properties.Settings.Default.Min;
-        //                    double min = Properties.Settings.Default.Max;
-        //                    command.Connection = connection;
-        //                    command.CommandText = $@"SELECT A.*
-        //FROM Asociados AS A
-        //WHERE (((Exists (SELECT 1 
-        //    FROM Familiares AS F 
-        //    WHERE F.id_asociado = A.id 
-        //    AND (DateDiff(""d"", F.fecha_nacimiento, Date()) / 365.25) >= 0
-        //    AND (DateDiff(""d"", F.fecha_nacimiento, Date()) / 365.25) <= 10
-        //))=False) AND ((A.Estado)=0));
-        //";
-        //                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-        //                    adapter.Fill(dataTable);
-        //                }
-        //                return dataTable;
-        //            }
-        //        }
+    
 
         public DataTable GetAsociadosSinHijos()
         {
